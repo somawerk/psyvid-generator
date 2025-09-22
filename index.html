@@ -1,193 +1,260 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psychedelic Image Morpher</title>
+<style>
+body {margin:0;font-family:'Segoe UI',sans-serif;background:#111;color:#eee;display:flex;height:100vh;}
+.container {display:flex;flex:1;overflow:hidden;}
+.sidebar {width:300px;background:rgba(28,28,28,0.95);padding:20px;box-sizing:border-box;overflow-y:auto;box-shadow:0 0 20px rgba(0,0,0,0.5);border-radius:10px 0 0 10px;}
+h2{margin-top:0;font-size:1.2em;color:#ff66cc;}
+.section{margin-bottom:20px;}
+label{display:flex;align-items:center;margin-bottom:8px;cursor:pointer;}
+input[type="checkbox"]{margin-right:10px;}
+.slider-container{display:flex;align-items:center;margin-bottom:10px;}
+.slider-container input[type="range"]{flex:1;margin-left:10px;}
+.color-picker{display:flex;align-items:center;margin-bottom:10px;}
+canvas{flex:1;display:block;background-color:#000;}
+button{background-color:#ff66cc;border:none;padding:10px 15px;color:#111;cursor:pointer;margin-right:10px;margin-top:5px;border-radius:6px;font-weight:bold;transition:all 0.2s;}
+button:hover{transform:scale(1.05);box-shadow:0 0 10px #ff66cc;}
+input[type="number"]{width:60px;margin-left:10px;border-radius:4px;border:none;padding:3px;}
+</style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="de"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;title&gt;Psychedelic Video Generator&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1">&lt;style&gt;</span></p>
-<p class="p1"><span class="s1">body {margin:0;font-family:'Segoe UI',sans-serif;background-color:#111;color:#eee;display:flex;height:100vh;}</span></p>
-<p class="p1"><span class="s1">.container {display:flex;flex:1;overflow:hidden;}</span></p>
-<p class="p1"><span class="s1">.sidebar {width:300px;background-color:rgba(28,28,28,0.95);padding:20px;box-sizing:border-box;overflow-y:auto;box-shadow:0 0 20px rgba(0,0,0,0.5);border-radius:10px 0 0 10px;}</span></p>
-<p class="p1"><span class="s1">h2{margin-top:0;font-size:1.2em;color:#ff66cc;}</span></p>
-<p class="p1"><span class="s1">.section{margin-bottom:20px;}</span></p>
-<p class="p1"><span class="s1">label{display:flex;align-items:center;margin-bottom:8px;cursor:pointer;}</span></p>
-<p class="p1"><span class="s1">input[type="checkbox"]{margin-right:10px;}</span></p>
-<p class="p1"><span class="s1">.slider-container{display:flex;align-items:center;margin-bottom:10px;}</span></p>
-<p class="p1"><span class="s1">.slider-container input[type="range"]{flex:1;margin-left:10px;}</span></p>
-<p class="p1"><span class="s1">.color-picker{display:flex;align-items:center;margin-bottom:10px;}</span></p>
-<p class="p1"><span class="s1">canvas{flex:1;display:block;background-color:#000;}</span></p>
-<p class="p1"><span class="s1">button{background-color:#ff66cc;border:none;padding:10px 15px;color:#111;cursor:pointer;margin-right:10px;margin-top:5px;border-radius:6px;font-weight:bold;transition:all 0.2s ease;}</span></p>
-<p class="p1"><span class="s1">button:hover{transform:scale(1.05);box-shadow:0 0 10px #ff66cc;}</span></p>
-<p class="p1"><span class="s1">input[type="number"]{width:60px;margin-left:10px;border-radius:4px;border:none;padding:3px;}</span></p>
-<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="container"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="sidebar"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="section"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;h2&gt;Fraktale&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1">&lt;label&gt;&lt;input type="checkbox" class="fractal" value="mandelbrot"&gt;Mandelbrot&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1">&lt;label&gt;&lt;input type="checkbox" class="fractal" value="julia"&gt;Julia&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1">&lt;label&gt;&lt;input type="checkbox" class="fractal" value="kaleidoskop"&gt;Kaleidoskop&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1">&lt;label&gt;&lt;input type="checkbox" class="fractal" value="sierpinski"&gt;Sierpinski-Dreieck&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1">&lt;label&gt;&lt;input type="checkbox" class="fractal" value="koch"&gt;Koch-Kurve&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Anzahl Wiederholungen:&lt;/span&gt;&lt;input type="range" id="repeats" min="1" max="20" value="5"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Wechselgeschwindigkeit:&lt;/span&gt;&lt;input type="range" id="speed" min="1" max="10" value="5"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Größe:&lt;/span&gt;&lt;input type="range" id="size" min="0.5" max="5" step="0.1" value="1"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Frame Delay (ms):&lt;/span&gt;&lt;input type="number" id="frameDelay" value="100" min="10" max="1000"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="section"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;h2&gt;Effekte&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="color-picker"&gt;&lt;label&gt;Primärfarbe: &lt;input type="color" id="primaryColor" value="#ff66cc"&gt;&lt;/label&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="color-picker"&gt;&lt;label&gt;Sekundärfarbe: &lt;input type="color" id="secondaryColor" value="#66ccff"&gt;&lt;/label&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Farbsättigung:&lt;/span&gt;&lt;input type="range" id="saturation" min="0" max="100" value="50"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Helligkeit:&lt;/span&gt;&lt;input type="range" id="brightness" min="0" max="100" value="50"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Kontrast:&lt;/span&gt;&lt;input type="range" id="contrast" min="0" max="100" value="50"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Rauschen:&lt;/span&gt;&lt;input type="range" id="noise" min="0" max="100" value="20"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Struktur:&lt;/span&gt;&lt;input type="range" id="structure" min="0" max="100" value="20"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;div class="slider-container"&gt;&lt;span&gt;Blur:&lt;/span&gt;&lt;input type="range" id="blur" min="0" max="10" value="0"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="section"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;h2&gt;Export / Speicher&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1">&lt;label&gt;Videozeit (Sekunden): &lt;input type="number" id="videoLength" value="10"&gt;&lt;/label&gt;&lt;br&gt;</span></p>
-<p class="p1"><span class="s1">&lt;button id="exportVideo"&gt;Video exportieren&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">&lt;button id="saveSettings"&gt;Speichern&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">&lt;button id="loadSettings"&gt;Laden&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;canvas id="psyCanvas"&gt;&lt;/canvas&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;script&gt;</span></p>
-<p class="p1"><span class="s1">// Canvas Setup</span></p>
-<p class="p1"><span class="s1">const canvas=document.getElementById('psyCanvas');</span></p>
-<p class="p1"><span class="s1">const ctx=canvas.getContext('2d');</span></p>
-<p class="p1"><span class="s1">function resizeCanvas(){canvas.width=window.innerWidth-300;canvas.height=window.innerHeight;}</span></p>
-<p class="p1"><span class="s1">window.addEventListener('resize',resizeCanvas);</span></p>
-<p class="p1"><span class="s1">resizeCanvas();</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// UI</span></p>
-<p class="p1"><span class="s1">const fractalCheckboxes=document.querySelectorAll('.fractal');</span></p>
-<p class="p1"><span class="s1">const repeats=document.getElementById('repeats');</span></p>
-<p class="p1"><span class="s1">const speed=document.getElementById('speed');</span></p>
-<p class="p1"><span class="s1">const sizeSlider=document.getElementById('size');</span></p>
-<p class="p1"><span class="s1">const frameDelayInput=document.getElementById('frameDelay');</span></p>
-<p class="p1"><span class="s1">const primaryColor=document.getElementById('primaryColor');</span></p>
-<p class="p1"><span class="s1">const secondaryColor=document.getElementById('secondaryColor');</span></p>
-<p class="p1"><span class="s1">const saturation=document.getElementById('saturation');</span></p>
-<p class="p1"><span class="s1">const brightness=document.getElementById('brightness');</span></p>
-<p class="p1"><span class="s1">const contrast=document.getElementById('contrast');</span></p>
-<p class="p1"><span class="s1">const noise=document.getElementById('noise');</span></p>
-<p class="p1"><span class="s1">const structure=document.getElementById('structure');</span></p>
-<p class="p1"><span class="s1">const blur=document.getElementById('blur');</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">let time=0;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// Fraktale</span></p>
-<p class="p1"><span class="s1">function mandelbrot(cx,cy,maxIter){let x=0,y=0,i=0;while(x*x+y*y&lt;=4&amp;&amp;i&lt;maxIter){let xt=x*x-y*y+cx;y=2*x*y+cy;x=xt;i++;}return i;}</span></p>
-<p class="p1"><span class="s1">function julia(x,y,cr,ci,maxIter){let i=0;while(x*x+y*y&lt;=4&amp;&amp;i&lt;maxIter){let xt=x*x-y*y+cr;y=2*x*y+ci;x=xt;i++;}return i;}</span></p>
-<p class="p1"><span class="s1">function hexToRgb(hex){const bigint=parseInt(hex.slice(1),16);return {r:(bigint&gt;&gt;16)&amp;255,g:(bigint&gt;&gt;8)&amp;255,b:bigint&amp;255};}</span></p>
-<p class="p1"><span class="s1">function clamp(v,min,max){return Math.min(Math.max(v,min),max);}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// Precompute Sierpinski/Koch</span></p>
-<p class="p1"><span class="s1">let sierpPoints=[], kochLines=[];</span></p>
-<p class="p1"><span class="s1">function precomputeFractals(){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Sierpinski</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let verts=[[0,0],[canvas.width,0],[canvas.width/2,canvas.height]];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let p=[Math.random()*canvas.width,Math.random()*canvas.height];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>sierpPoints=[];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>for(let i=0;i&lt;repeats.value*1000;i++){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let choice=verts[Math.floor(Math.random()*verts.length)];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>p[0]=(p[0]+choice[0])/2; p[1]=(p[1]+choice[1])/2;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>sierpPoints.push([p[0],p[1]]);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Koch</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>kochLines=[];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function koch(p1,p2,depth,res){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if(depth===0){res.push([p1,p2]);return;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let [x1,y1]=p1,[x2,y2]=p2;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let dx=(x2-x1)/3, dy=(y2-y1)/3;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let pa=[x1,y1], pb=[x1+dx,y1+dy], pc=[0.5*(x1+x2)-Math.sqrt(3)*(y2-y1)/6,0.5*(y1+y2)+Math.sqrt(3)*(x2-x1)/6], pd=[x1+2*dx,y1+2*dy], pe=[x2,y2];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>koch(pa,pb,depth-1,res); koch(pb,pc,depth-1,res); koch(pc,pd,depth-1,res); koch(pd,pe,depth-1,res);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>koch([50,canvas.height/2],[canvas.width-50,canvas.height/2],Math.floor(repeats.value/2),kochLines);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">precomputeFractals();</span></p>
-<p class="p1"><span class="s1">repeats.addEventListener('input',precomputeFractals);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// Main Draw</span></p>
-<p class="p1"><span class="s1">let lastFrame=0;</span></p>
-<p class="p1"><span class="s1">function draw(timestamp){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let delay=parseInt(frameDelayInput.value)||100;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>if(timestamp-lastFrame&lt;delay){requestAnimationFrame(draw);return;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>lastFrame=timestamp;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>time+=0.01;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>ctx.clearRect(0,0,canvas.width,canvas.height);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const prim=hexToRgb(primaryColor.value);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const sec=hexToRgb(secondaryColor.value);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const w=canvas.width,h=canvas.height;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const imageData=ctx.createImageData(w,h);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const data=imageData.data;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>for(let y=0;y&lt;h;y+=2){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>for(let x=0;x&lt;w;x+=2){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let r=0,g=0,b=0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(fractalCheckboxes[0].checked){let mx=3*(x/w-0.5),my=2*(y/h-0.5);let m=mandelbrot(mx,my,50)/50;r+=m*255;g+=Math.sin(m*3.14)*127+128;b+=Math.cos(m*3.14)*127+128;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(fractalCheckboxes[1].checked){let jx=3*(x/w-0.5),jy=2*(y/h-0.5);let j=julia(jx,jy,-0.7,0.27015,50)/50;r+=Math.cos(j*3.14)*127+128;g+=j*255;b+=Math.sin(j*3.14)*127+128;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(fractalCheckboxes[2].checked){let kx=x-(w/2),ky=y-(h/2);let angle=Math.atan2(ky,kx)*6;let radius=Math.sqrt(kx*kx+ky*ky); r+=Math.sin(radius/50+time+angle)*127+128; g+=Math.cos(radius/50+time+angle)*127+128; b+=Math.sin(radius/30+time+angle)*127+128;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[(y*w+x)*4]=clamp(r,0,255);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[(y*w+x)*4+1]=clamp(g,0,255);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[(y*w+x)*4+2]=clamp(b,0,255);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[(y*w+x)*4+3]=255;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>ctx.putImageData(imageData,0,0);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Draw Sierpinski</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>if(fractalCheckboxes[3].checked){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>ctx.fillStyle=`rgba(${prim.r},${prim.g},${prim.b},0.7)`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>for(let p of sierpPoints){ctx.fillRect(p[0],p[1],2,2);}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Draw Koch</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>if(fractalCheckboxes[4].checked){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>ctx.strokeStyle=`rgba(${sec.r},${sec.g},${sec.b},0.7)`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>ctx.beginPath();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>for(let line of kochLines){ctx.moveTo(line[0][0],line[0][1]);ctx.lineTo(line[1][0],line[1][1]);}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>ctx.stroke();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>requestAnimationFrame(draw);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">requestAnimationFrame(draw);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// Dummy Buttons</span></p>
-<p class="p1"><span class="s1">document.getElementById('exportVideo').addEventListener('click',()=&gt;alert('Video-Export noch nicht implementiert'));</span></p>
-<p class="p1"><span class="s1">document.getElementById('saveSettings').addEventListener('click',()=&gt;alert('Speichern noch nicht implementiert'));</span></p>
-<p class="p1"><span class="s1">document.getElementById('loadSettings').addEventListener('click',()=&gt;alert('Laden noch nicht implementiert'));</span></p>
-<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
+<div class="container">
+<div class="sidebar">
+<button id="randomize">Random</button>
+<div class="section">
+<h2>Fraktale</h2>
+<label><input type="checkbox" class="fractal" value="mandelbrot">Mandelbrot</label>
+<label><input type="checkbox" class="fractal" value="julia">Julia</label>
+<label><input type="checkbox" class="fractal" value="kaleidoskop">Kaleidoskop</label>
+<label><input type="checkbox" class="fractal" value="sierpinski">Sierpinski-Dreieck</label>
+<label><input type="checkbox" class="fractal" value="koch">Koch-Kurve</label>
+<div class="slider-container"><span>Anzahl Wiederholungen:</span><input type="range" id="repeats" min="1" max="20" value="5"></div>
+<div class="slider-container"><span>Wechselgeschwindigkeit:</span><input type="range" id="speed" min="1" max="10" value="5"></div>
+<div class="slider-container"><span>Größe:</span><input type="range" id="size" min="0.5" max="5" step="0.1" value="1"></div>
+</div>
+
+<div class="section">
+<h2>Effekte</h2>
+<div class="color-picker"><label>Primärfarbe: <input type="color" id="primaryColor" value="#ff66cc"></label></div>
+<div class="color-picker"><label>Sekundärfarbe: <input type="color" id="secondaryColor" value="#66ccff"></label></div>
+<div class="slider-container"><span>Farbsättigung:</span><input type="range" id="saturation" min="0" max="100" value="50"></div>
+<div class="slider-container"><span>Helligkeit:</span><input type="range" id="brightness" min="0" max="100" value="50"></div>
+<div class="slider-container"><span>Kontrast:</span><input type="range" id="contrast" min="0" max="100" value="50"></div>
+<div class="slider-container"><span>Rauschen:</span><input type="range" id="noise" min="0" max="100" value="20"></div>
+<div class="slider-container"><span>Struktur:</span><input type="range" id="structure" min="0" max="100" value="20"></div>
+<div class="slider-container"><span>Blur:</span><input type="range" id="blur" min="0" max="10" value="0"></div>
+</div>
+
+<div class="section">
+<h2>Morphing</h2>
+<div class="slider-container"><span>Bild ↔ Muster:</span><input type="range" id="morph" min="0" max="100" value="50"></div>
+</div>
+
+<div class="section">
+<h2>Import / Export</h2>
+<input type="file" id="uploadImage" accept="image/*"><br>
+<button id="exportImage">Bild herunterladen</button>
+<button id="saveSettings">Speichern</button>
+<button id="loadSettings">Laden</button>
+<div class="slider-container"><span>Qualität (%):</span><input type="range" id="quality" min="10" max="100" value="80"></div>
+</div>
+</div>
+
+<canvas id="psyCanvas"></canvas>
+<script>
+const canvas=document.getElementById('psyCanvas');
+const ctx=canvas.getContext('2d');
+function resizeCanvas(){canvas.width=window.innerWidth-300;canvas.height=window.innerHeight;}
+window.addEventListener('resize',resizeCanvas);
+resizeCanvas();
+
+// UI Elements
+const fractalCheckboxes=document.querySelectorAll('.fractal');
+const repeats=document.getElementById('repeats');
+const speed=document.getElementById('speed');
+const sizeSlider=document.getElementById('size');
+const primaryColor=document.getElementById('primaryColor');
+const secondaryColor=document.getElementById('secondaryColor');
+const saturation=document.getElementById('saturation');
+const brightness=document.getElementById('brightness');
+const contrast=document.getElementById('contrast');
+const noise=document.getElementById('noise');
+const structure=document.getElementById('structure');
+const blur=document.getElementById('blur');
+const morphSlider=document.getElementById('morph');
+const uploadImage=document.getElementById('uploadImage');
+const exportImage=document.getElementById('exportImage');
+const qualitySlider=document.getElementById('quality');
+const randomizeBtn=document.getElementById('randomize');
+
+let uploadedImg=null;
+let fractalSpecs={};
+
+// Utility
+function hexToRgb(hex){const bigint=parseInt(hex.slice(1),16);return {r:(bigint>>16)&255,g:(bigint>>8)&255,b:bigint&255};}
+function clamp(v,min,max){return Math.min(Math.max(v,min),max);}
+
+// Precompute Fractals
+let sierpPoints=[], kochLines=[];
+function precomputeFractals(){
+  let w=canvas.width,h=canvas.height;
+  let verts=[[0,0],[w,0],[w/2,h]];
+  let p=[Math.random()*w,Math.random()*h];
+  sierpPoints=[];
+  for(let i=0;i<repeats.value*500;i++){
+    let choice=verts[Math.floor(Math.random()*verts.length)];
+    p[0]=(p[0]+choice[0])/2; p[1]=(p[1]+choice[1])/2;
+    sierpPoints.push([p[0],p[1]]);
+  }
+  kochLines=[];
+  function koch(p1,p2,depth,res){
+    if(depth===0){res.push([p1,p2]);return;}
+    let [x1,y1]=p1,[x2,y2]=p2;
+    let dx=(x2-x1)/3, dy=(y2-y1)/3;
+    let pa=[x1,y1],pb=[x1+dx,y1+dy],pc=[0.5*(x1+x2)-Math.sqrt(3)*(y2-y1)/6,0.5*(y1+y2)+Math.sqrt(3)*(x2-x1)/6],pd=[x1+2*dx,y1+2*dy],pe=[x2,y2];
+    koch(pa,pb,depth-1,res);koch(pb,pc,depth-1,res);koch(pc,pd,depth-1,res);koch(pd,pe,depth-1,res);
+  }
+  koch([50,h/2],[w-50,h/2],Math.floor(repeats.value/2),kochLines);
+}
+precomputeFractals();
+repeats.addEventListener('input',precomputeFractals);
+
+// Load Image
+uploadImage.addEventListener('change',e=>{
+  const file=e.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    const img=new Image();
+    img.onload=function(){uploadedImg=img;randomizeSpecs();}
+    img.src=ev.target.result;
+  }
+  reader.readAsDataURL(file);
+});
+
+// Random Specs
+function randomizeSpecs(){
+  fractalCheckboxes.forEach(cb=>cb.checked=Math.random()>0.5);
+  primaryColor.value='#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+  secondaryColor.value='#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+  repeats.value=Math.floor(Math.random()*20)+1;
+  speed.value=Math.floor(Math.random()*10)+1;
+  sizeSlider.value=(Math.random()*4+0.5).toFixed(1);
+  saturation.value=Math.floor(Math.random()*100);
+  brightness.value=Math.floor(Math.random()*100);
+  contrast.value=Math.floor(Math.random()*100);
+  noise.value=Math.floor(Math.random()*100);
+  structure.value=Math.floor(Math.random()*100);
+  blur.value=Math.floor(Math.random()*10);
+  precomputeFractals();
+}
+randomizeBtn.addEventListener('click',randomizeSpecs);
+
+// Draw Fractals
+function mandelbrot(cx,cy,maxIter){let x=0,y=0,i=0;while(x*x+y*y<=4&&i<maxIter){let xt=x*x-y*y+cx;y=2*x*y+cy;x=xt;i++;}return i;}
+function julia(x,y,cr,ci,maxIter){let i=0;while(x*x+y*y<=4&&i<maxIter){let xt=x*x-y*y+cr;y=2*x*y+ci;x=xt;i++;}return i;}
+
+// Main Draw Loop
+function draw(){
+  const w=canvas.width,h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+  let imgData=ctx.createImageData(w,h);
+  const prim=hexToRgb(primaryColor.value);
+  const sec=hexToRgb(secondaryColor.value);
+  const morph=parseInt(morphSlider.value)/100;
+
+  for(let y=0;y<h;y+=2){
+    for(let x=0;x<w;x+=2){
+      let r=0,g=0,b=0;
+      if(fractalCheckboxes[0].checked){let mx=3*(x/w-0.5),my=2*(y/h-0.5);let m=mandelbrot(mx,my,50)/50;r+=m*255; g+=Math.sin(m*3.14)*127+128; b+=Math.cos(m*3.14)*127+128;}
+      if(fractalCheckboxes[1].checked){let jx=3*(x/w-0.5),jy=2*(y/h-0.5);let j=julia(jx,jy,-0.7,0.27015,50)/50;r+=Math.cos(j*3.14)*127+128; g+=j*255; b+=Math.sin(j*3.14)*127+128;}
+      if(fractalCheckboxes[2].checked){let kx=x-(w/2),ky=y-(h/2);let angle=Math.atan2(ky,kx)*6;let radius=Math.sqrt(kx*kx+ky*ky); r+=Math.sin(radius/50+time+angle)*127+128; g+=Math.cos(radius/50+time+angle)*127+128; b+=Math.sin(radius/30+time+angle)*127+128;}
+      const noiseVal=(Math.random()-0.5)*noise.value;
+      r+=noiseVal; g+=noiseVal; b+=noiseVal;
+      // Morph with uploaded image
+      if(uploadedImg){
+        const ix=Math.floor(x/uploadedImg.width*w/uploadedImg.width);
+        const iy=Math.floor(y/uploadedImg.height*h/uploadedImg.height);
+        let c=ctx.getImageData(ix,iy,1,1).data;
+        r=r*(1-morph)+c[0]*morph;
+        g=g*(1-morph)+c[1]*morph;
+        b=b*(1-morph)+c[2]*morph;
+      }
+      const idx=(y*w+x)*4;
+      imgData.data[idx]=clamp(r,0,255);
+      imgData.data[idx+1]=clamp(g,0,255);
+      imgData.data[idx+2]=clamp(b,0,255);
+      imgData.data[idx+3]=255;
+    }
+  }
+  ctx.putImageData(imgData,0,0);
+  // Draw Sierpinski
+  if(fractalCheckboxes[3].checked){
+    ctx.fillStyle=`rgba(${prim.r},${prim.g},${prim.b},0.7)`;
+    for(let p of sierpPoints){ctx.fillRect(p[0],p[1],2,2);}
+  }
+  // Draw Koch
+  if(fractalCheckboxes[4].checked){
+    ctx.strokeStyle=`rgba(${sec.r},${sec.g},${sec.b},0.7)`;
+    ctx.beginPath();
+    for(let line of kochLines){ctx.moveTo(line[0][0],line[0][1]);ctx.lineTo(line[1][0],line[1][1]);}
+    ctx.stroke();
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Export Image
+exportImage.addEventListener('click',()=>{
+  const q=parseInt(qualitySlider.value)/100||0.8;
+  const link=document.createElement('a');
+  link.download='psychedelic.png';
+  link.href=canvas.toDataURL('image/png',q);
+  link.click();
+});
+
+// Save / Load Settings
+document.getElementById('saveSettings').addEventListener('click',()=>{
+  const settings=JSON.stringify({
+    fractals:[...fractalCheckboxes].map(cb=>cb.checked),
+    primaryColor:primaryColor.value,
+    secondaryColor:secondaryColor.value,
+    repeats:repeats.value,
+    speed:speed.value,
+    size:sizeSlider.value,
+    saturation:saturation.value,
+    brightness:brightness.value,
+    contrast:contrast.value,
+    noise:noise.value,
+    structure:structure.value,
+    blur:blur.value,
+    morph:morphSlider.value
+  });
+  localStorage.setItem('psySettings',settings);
+  alert('Einstellungen gespeichert');
+});
+document.getElementById('loadSettings').addEventListener('click',()=>{
+  const settings=JSON.parse(localStorage.getItem('psySettings')||'{}');
+  if(!settings) return;
+  fractalCheckboxes.forEach((cb,i)=>cb.checked=settings.fractals[i]);
+  primaryColor.value=settings.primaryColor;
+  secondaryColor.value=settings.secondaryColor;
+  repeats.value=settings.repeats;
+  speed.value=settings.speed;
+  sizeSlider.value=settings.size;
+  saturation.value=settings.saturation;
+  brightness.value=settings.brightness;
+  contrast.value=settings.contrast;
+  noise.value=settings.noise;
+  structure.value=settings.structure;
+  blur.value=settings.blur;
+  morphSlider.value=settings.morph;
+  precomputeFractals();
+});
+</script>
 </body>
 </html>
