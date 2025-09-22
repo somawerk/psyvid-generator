@@ -49,14 +49,11 @@
       <h2>Bild</h2>
       <input type="file" id="uploadImage" accept="image/*"><br>
       <button id="downloadImage">Download</button>
-      <label>Qualität:
-        <select id="downloadQuality">
-          <option value="1">100%</option>
-          <option value="0.9" selected>90%</option>
-          <option value="0.75">75%</option>
-          <option value="0.5">50%</option>
-        </select>
-      </label>
+      <div class="slider-container">
+        <label>Qualität:
+          <input type="range" id="downloadQuality" min="50" max="100" step="25" value="100">
+        </label>
+      </div>
     </div>
 
     <!-- Morph -->
@@ -64,7 +61,7 @@
       <h2>Morphing</h2>
       <div class="slider-container">
         <label>Fraktal ↔ Bild
-          <input type="range" id="morphSlider" min="0" max="100" value="50">
+          <input type="range" id="morphSlider" min="0" max="100" value="0">
         </label>
       </div>
     </div>
@@ -129,7 +126,7 @@ function julia(x,y,ca,cb,max){let a=x,b=y;for(let i=0;i<max;i++){let aa=a*a-b*b+
 // Draw Loop
 function draw(){
   const w=canvas.width,h=canvas.height;
-  const scale=1; // performance-scaling
+  const scale=1.0;
   const ow=Math.floor(w*scale),oh=Math.floor(h*scale);
   let off=document.createElement("canvas");off.width=ow;off.height=oh;
   let octx=off.getContext("2d");
@@ -152,13 +149,15 @@ function draw(){
       if(fractalCheckboxes[3].checked && Math.random()<0.0005){r=prim.r;g=prim.g;b=prim.b;}
       if(fractalCheckboxes[4].checked && Math.random()<0.0005){r=sec.r;g=sec.g;b=sec.b;}
 
-      r=r*(1-morph)+fr*morph;
-      g=g*(1-morph)+fg*morph;
-      b=b*(1-morph)+fb*morph;
+      r = (1-morph)*r + morph*fr;
+      g = (1-morph)*g + morph*fg;
+      b = (1-morph)*b + morph*fb;
 
       let sat=saturation.value/100, br=brightness.value/100, cont=contrast.value/100;
+      let gray=0.3*r+0.59*g+0.11*b;
+      r=gray+(r-gray)*sat; g=gray+(g-gray)*sat; b=gray+(b-gray)*sat;
       r=(r-128)*cont+128; g=(g-128)*cont+128; b=(b-128)*cont+128;
-      r*=sat; g*=sat; b*=sat; r*=br; g*=br; b*=br;
+      r*=br; g*=br; b*=br;
 
       r+=(Math.random()-0.5)*noise.value; g+=(Math.random()-0.5)*noise.value; b+=(Math.random()-0.5)*noise.value;
 
@@ -169,8 +168,7 @@ function draw(){
   }
 
   octx.putImageData(imgData,0,0);
-
-  ctx.imageSmoothingEnabled=true;
+  ctx.imageSmoothingEnabled=false;
   ctx.clearRect(0,0,w,h);
   ctx.drawImage(off,0,0,w,h);
 
@@ -192,7 +190,7 @@ document.getElementById('uploadImage').addEventListener('change',e=>{
 
 // Download
 document.getElementById('downloadImage').addEventListener('click',()=>{
-  const q=parseFloat(document.getElementById('downloadQuality').value);
+  const q=parseInt(document.getElementById('downloadQuality').value)/100;
   const link=document.createElement('a');
   link.download="psychedelic.png";
   link.href=canvas.toDataURL("image/png",q);
