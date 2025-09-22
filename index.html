@@ -129,7 +129,7 @@ function julia(x,y,ca,cb,max){let a=x,b=y;for(let i=0;i<max;i++){let aa=a*a-b*b+
 // Draw Loop
 function draw(){
   const w=canvas.width,h=canvas.height;
-  const scale=0.5; // performance-scaling
+  const scale=1; // performance-scaling
   const ow=Math.floor(w*scale),oh=Math.floor(h*scale);
   let off=document.createElement("canvas");off.width=ow;off.height=oh;
   let octx=off.getContext("2d");
