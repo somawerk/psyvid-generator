@@ -7,255 +7,224 @@
   <meta name="Generator" content="Cocoa HTML Writer">
   <meta name="CocoaVersion" content="2575.6">
   <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="de"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1">&lt;title&gt;Psychedelic Video Generator&lt;/title&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: 'Segoe UI', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-color: #111;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #eee;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.sidebar {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 300px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-color: #1c1c1c;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>overflow-y: auto;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>h2 {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 1.2em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #ff66cc;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.section {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>label {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>input[type="checkbox"] {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-right: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.slider-container {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.slider-container input[type="range"] {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-left: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.color-picker {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>canvas {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>button {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-color: #ff66cc;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 10px 15px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #111;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-right: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-color: #ff33aa;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>input[type="number"] {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 60px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-left: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="sidebar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Fraktale --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Fraktale&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="mandelbrot"&gt;Mandelbrot&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="julia"&gt;Julia&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="kaleidoskop"&gt;Kaleidoskop&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="sierpinski"&gt;Sierpinski-Dreieck&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="koch"&gt;Koch-Kurve&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Anzahl Wiederholungen: &lt;input type="range" id="repeats" min="1" max="20" value="5"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Wechselgeschwindigkeit: &lt;input type="range" id="speed" min="1" max="10" value="5"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Größe: &lt;input type="range" id="size" min="0.5" max="5" step="0.1" value="1"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Effekte --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Effekte&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="color-picker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Primärfarbe: &lt;input type="color" id="primaryColor" value="#ff66cc"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="color-picker"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Sekundärfarbe: &lt;input type="color" id="secondaryColor" value="#66ccff"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Farbsättigung: &lt;input type="range" id="saturation" min="0" max="100" value="50"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Helligkeit: &lt;input type="range" id="brightness" min="0" max="100" value="50"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Kontrast: &lt;input type="range" id="contrast" min="0" max="100" value="50"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Rauschen: &lt;input type="range" id="noise" min="0" max="100" value="20"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Struktur: &lt;input type="range" id="structure" min="0" max="100" value="20"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="slider-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Blur: &lt;input type="range" id="blur" min="0" max="10" value="0"&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Export &amp; Speicher --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Export / Speicher&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label&gt;Videozeit (Sekunden): &lt;input type="number" id="videoLength" value="10"&gt;&lt;/label&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="exportVideo"&gt;Video exportieren&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="saveSettings"&gt;Speichern&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button id="loadSettings"&gt;Laden&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;canvas id="psyCanvas"&gt;&lt;/canvas&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">const canvas = document.getElementById('psyCanvas');</p>
-<p class="p1">const ctx = canvas.getContext('2d');</p>
-<p class="p1">canvas.width = window.innerWidth - 300;</p>
-<p class="p1">canvas.height = window.innerHeight;</p>
-<p class="p2"><br></p>
-<p class="p1">let time = 0;</p>
-<p class="p2"><br></p>
-<p class="p1">// UI Elements</p>
-<p class="p1">const fractalCheckboxes = document.querySelectorAll('.fractal');</p>
-<p class="p1">const repeats = document.getElementById('repeats');</p>
-<p class="p1">const speed = document.getElementById('speed');</p>
-<p class="p1">const size = document.getElementById('size');</p>
-<p class="p2"><br></p>
-<p class="p1">const primaryColor = document.getElementById('primaryColor');</p>
-<p class="p1">const secondaryColor = document.getElementById('secondaryColor');</p>
-<p class="p1">const saturation = document.getElementById('saturation');</p>
-<p class="p1">const brightness = document.getElementById('brightness');</p>
-<p class="p1">const contrast = document.getElementById('contrast');</p>
-<p class="p1">const noise = document.getElementById('noise');</p>
-<p class="p1">const structure = document.getElementById('structure');</p>
-<p class="p1">const blur = document.getElementById('blur');</p>
-<p class="p2"><br></p>
-<p class="p1">function draw() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>time += 0.01;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const width = canvas.width;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const height = canvas.height;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const imageData = ctx.createImageData(width, height);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const data = imageData.data;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Farben aus UI</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const prim = hexToRgb(primaryColor.value);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const sec = hexToRgb(secondaryColor.value);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>for (let y = 0; y &lt; height; y++) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let x = 0; x &lt; width; x++) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const idx = (y * width + x) * 4;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Dummy psychedelischer Effekt (Farbsinus + Rauschen)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx] = Math.floor(prim.r + 127*Math.sin((x+y+time*100)/50));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx+1] = Math.floor(prim.g + 127*Math.sin((x-y+time*80)/60));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx+2] = Math.floor(prim.b + 127*Math.sin((x+y+time*60)/40));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Rauschen</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const noiseVal = (Math.random()-0.5) * noise.value;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx] += noiseVal;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx+1] += noiseVal;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx+2] += noiseVal;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx] = clamp(data[idx],0,255);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx+1] = clamp(data[idx+1],0,255);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx+2] = clamp(data[idx+2],0,255);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>data[idx+3] = 255;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>ctx.putImageData(imageData,0,0);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>requestAnimationFrame(draw);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function clamp(value, min, max) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return Math.min(Math.max(value, min), max);</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function hexToRgb(hex) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const bigint = parseInt(hex.slice(1),16);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return {r:(bigint &gt;&gt; 16) &amp; 255, g:(bigint &gt;&gt;8) &amp; 255, b: bigint &amp; 255};</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">// Dummy Event Listeners für Buttons</p>
-<p class="p1">document.getElementById('exportVideo').addEventListener('click',()=&gt;alert('Video-Export noch nicht implementiert'));</p>
-<p class="p1">document.getElementById('saveSettings').addEventListener('click',()=&gt;alert('Speichern noch nicht implementiert'));</p>
-<p class="p1">document.getElementById('loadSettings').addEventListener('click',()=&gt;alert('Laden noch nicht implementiert'));</p>
-<p class="p2"><br></p>
-<p class="p1">draw();</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="de"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;title&gt;Psychedelic Video Generator&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>margin:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-family:'Segoe UI', sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background-color:#111;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>color:#eee;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>height:100vh;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.container {display:flex;flex:1;overflow:hidden;}</span></p>
+<p class="p1"><span class="s1">.sidebar {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>width:300px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background-color:rgba(28,28,28,0.95);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>padding:20px;box-sizing:border-box;overflow-y:auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>box-shadow:0 0 20px rgba(0,0,0,0.5);border-radius:10px 0 0 10px;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">h2{margin-top:0;font-size:1.2em;color:#ff66cc;}</span></p>
+<p class="p1"><span class="s1">.section{margin-bottom:20px;}</span></p>
+<p class="p1"><span class="s1">label{display:flex;align-items:center;margin-bottom:8px;cursor:pointer;}</span></p>
+<p class="p1"><span class="s1">input[type="checkbox"]{margin-right:10px;}</span></p>
+<p class="p1"><span class="s1">.slider-container{display:flex;align-items:center;margin-bottom:10px;}</span></p>
+<p class="p1"><span class="s1">.slider-container input[type="range"]{flex:1;margin-left:10px;}</span></p>
+<p class="p1"><span class="s1">.color-picker{display:flex;align-items:center;margin-bottom:10px;}</span></p>
+<p class="p1"><span class="s1">canvas{flex:1;display:block;background-color:#000;}</span></p>
+<p class="p1"><span class="s1">button{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>background-color:#ff66cc;border:none;padding:10px 15px;color:#111;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>cursor:pointer;margin-right:10px;margin-top:5px;border-radius:6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>font-weight:bold;transition:all 0.2s ease;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">button:hover{transform:scale(1.05);box-shadow:0 0 10px #ff66cc;}</span></p>
+<p class="p1"><span class="s1">input[type="number"]{width:60px;margin-left:10px;border-radius:4px;border:none;padding:3px;}</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div class="container"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="sidebar"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Fraktale&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="mandelbrot"&gt;Mandelbrot&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="julia"&gt;Julia&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="kaleidoskop"&gt;Kaleidoskop&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="sierpinski"&gt;Sierpinski-Dreieck&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;&lt;input type="checkbox" class="fractal" value="koch"&gt;Koch-Kurve&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Anzahl Wiederholungen:&lt;/span&gt;&lt;input type="range" id="repeats" min="1" max="20" value="5"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Wechselgeschwindigkeit:&lt;/span&gt;&lt;input type="range" id="speed" min="1" max="10" value="5"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Größe:&lt;/span&gt;&lt;input type="range" id="size" min="0.5" max="5" step="0.1" value="1"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Effekte&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="color-picker"&gt;&lt;label&gt;Primärfarbe: &lt;input type="color" id="primaryColor" value="#ff66cc"&gt;&lt;/label&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="color-picker"&gt;&lt;label&gt;Sekundärfarbe: &lt;input type="color" id="secondaryColor" value="#66ccff"&gt;&lt;/label&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Farbsättigung:&lt;/span&gt;&lt;input type="range" id="saturation" min="0" max="100" value="50"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Helligkeit:&lt;/span&gt;&lt;input type="range" id="brightness" min="0" max="100" value="50"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Kontrast:&lt;/span&gt;&lt;input type="range" id="contrast" min="0" max="100" value="50"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Rauschen:&lt;/span&gt;&lt;input type="range" id="noise" min="0" max="100" value="20"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Struktur:&lt;/span&gt;&lt;input type="range" id="structure" min="0" max="100" value="20"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="slider-container"&gt;&lt;span&gt;Blur:&lt;/span&gt;&lt;input type="range" id="blur" min="0" max="10" value="0"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="section"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Export / Speicher&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;Videozeit (Sekunden): &lt;input type="number" id="videoLength" value="10"&gt;&lt;/label&gt;&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button id="exportVideo"&gt;Video exportieren&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button id="saveSettings"&gt;Speichern&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button id="loadSettings"&gt;Laden&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;canvas id="psyCanvas"&gt;&lt;/canvas&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">const canvas=document.getElementById('psyCanvas');</span></p>
+<p class="p1"><span class="s1">const ctx=canvas.getContext('2d');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">function resizeCanvas(){canvas.width=window.innerWidth-300;canvas.height=window.innerHeight;}</span></p>
+<p class="p1"><span class="s1">window.addEventListener('resize',resizeCanvas);</span></p>
+<p class="p1"><span class="s1">resizeCanvas();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">let time=0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// UI</span></p>
+<p class="p1"><span class="s1">const fractalCheckboxes=document.querySelectorAll('.fractal');</span></p>
+<p class="p1"><span class="s1">const repeats=document.getElementById('repeats');</span></p>
+<p class="p1"><span class="s1">const speed=document.getElementById('speed');</span></p>
+<p class="p1"><span class="s1">const sizeSlider=document.getElementById('size');</span></p>
+<p class="p1"><span class="s1">const primaryColor=document.getElementById('primaryColor');</span></p>
+<p class="p1"><span class="s1">const secondaryColor=document.getElementById('secondaryColor');</span></p>
+<p class="p1"><span class="s1">const saturation=document.getElementById('saturation');</span></p>
+<p class="p1"><span class="s1">const brightness=document.getElementById('brightness');</span></p>
+<p class="p1"><span class="s1">const contrast=document.getElementById('contrast');</span></p>
+<p class="p1"><span class="s1">const noise=document.getElementById('noise');</span></p>
+<p class="p1"><span class="s1">const structure=document.getElementById('structure');</span></p>
+<p class="p1"><span class="s1">const blur=document.getElementById('blur');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Fraktale Generatoren</span></p>
+<p class="p1"><span class="s1">function mandelbrot(cx,cy,maxIter){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let x=0,y=0,iter=0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>while(x*x+y*y&lt;=4 &amp;&amp; iter&lt;maxIter){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let xt=x*x-y*y+cx;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>y=2*x*y+cy;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>x=xt; iter++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>return iter;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">function julia(x,y,cr,ci,maxIter){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let iter=0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>while(x*x+y*y&lt;=4 &amp;&amp; iter&lt;maxIter){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let xt=x*x-y*y+cr;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>y=2*x*y+ci;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>x=xt; iter++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>return iter;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Sierpinski-Dreieck (Fraktalpunkt-Generation)</span></p>
+<p class="p1"><span class="s1">function sierpinskiPoint(points,n){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let res=[];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let p=[Math.random(),Math.random()];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>for(let i=0;i&lt;n;i++){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let choice=points[Math.floor(Math.random()*points.length)];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>p[0]=(p[0]+choice[0])/2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>p[1]=(p[1]+choice[1])/2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>res.push([...p]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>return res;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Koch-Kurve (einfach Linie) für Demo</span></p>
+<p class="p1"><span class="s1">function kochLine(p1,p2,depth,res){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>if(depth===0){res.push([p1,p2]);return;}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let [x1,y1]=p1,[x2,y2]=p2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let dx=(x2-x1)/3, dy=(y2-y1)/3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let pa=[x1,y1], pb=[x1+dx,y1+dy], pc=[0.5*(x1+x2)-Math.sqrt(3)*(y2-y1)/6,0.5*(y1+y2)+Math.sqrt(3)*(x2-x1)/6], pd=[x1+2*dx,y1+2*dy], pe=[x2,y2];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>kochLine(pa,pb,depth-1,res);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>kochLine(pb,pc,depth-1,res);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>kochLine(pc,pd,depth-1,res);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>kochLine(pd,pe,depth-1,res);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Farb-Helper</span></p>
+<p class="p1"><span class="s1">function hexToRgb(hex){const bigint=parseInt(hex.slice(1),16);return {r:(bigint&gt;&gt;16)&amp;255,g:(bigint&gt;&gt;8)&amp;255,b:bigint&amp;255};}</span></p>
+<p class="p1"><span class="s1">function clamp(v,min,max){return Math.min(Math.max(v,min),max);}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Main draw</span></p>
+<p class="p1"><span class="s1">function draw(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>time+=0.01;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const w=canvas.width,h=canvas.height;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const img=ctx.createImageData(w,h);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const data=img.data;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const prim=hexToRgb(primaryColor.value);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const sec=hexToRgb(secondaryColor.value);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Mandelbrot &amp; Julia</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>let maxIter=50;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>for(let y=0;y&lt;h;y++){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>for(let x=0;x&lt;w;x++){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const idx=(y*w+x)*4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let r=0,g=0,b=0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(fractalCheckboxes[0].checked){ // Mandelbrot</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let mx=3*(x/w-0.5),my=2*(y/h-0.5);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let m=mandelbrot(mx,my,maxIter)/maxIter;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>r+=m*255; g+=Math.sin(m*3.14)*127+128; b+=Math.cos(m*3.14)*127+128;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(fractalCheckboxes[1].checked){ // Julia</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let jx=3*(x/w-0.5), jy=2*(y/h-0.5);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let j=julia(jx,jy,-0.7,0.27015,maxIter)/maxIter;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>r+=Math.cos(j*3.14)*127+128; g+=j*255; b+=Math.sin(j*3.14)*127+128;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Kaleidoskop</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(fractalCheckboxes[2].checked){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let kx=x-(w/2), ky=y-(h/2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let angle=Math.atan2(ky,kx)*6; // 6-fach</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let radius=Math.sqrt(kx*kx+ky*ky);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>r+=Math.sin(radius/50+time+angle)*127+128;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>g+=Math.cos(radius/50+time+angle)*127+128;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>b+=Math.sin(radius/30+time+angle)*127+128;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Rauschen</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const noiseVal=(Math.random()-0.5)*noise.value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>r+=noiseVal; g+=noiseVal; b+=noiseVal;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[idx]=clamp(r,0,255);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[idx+1]=clamp(g,0,255);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[idx+2]=clamp(b,0,255);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>data[idx+3]=255;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>ctx.putImageData(img,0,0);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>requestAnimationFrame(draw);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// Dummy Buttons</span></p>
+<p class="p1"><span class="s1">document.getElementById('exportVideo').addEventListener('click',()=&gt;alert('Video-Export noch nicht implementiert'));</span></p>
+<p class="p1"><span class="s1">document.getElementById('saveSettings').addEventListener('click',()=&gt;alert('Speichern noch nicht implementiert'));</span></p>
+<p class="p1"><span class="s1">document.getElementById('loadSettings').addEventListener('click',()=&gt;alert('Laden noch nicht implementiert'));</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">draw();</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
 </body>
 </html>
